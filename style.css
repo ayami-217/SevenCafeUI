@@ -1,0 +1,723 @@
+body {
+  background: #eae2cf;
+  font-family: 'Noto Sans JP', 'Rounded Mplus 1c', 'Hiragino Maru Gothic ProN', 'Arial Rounded MT Bold', 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background: #111;
+  border-radius: 0;
+  padding: 32px 24px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  width: 420px;
+  height: 420px;
+  min-width: unset;
+  min-height: unset;
+  max-width: 90vw;
+  max-height: 90vw;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 480px) {
+  .container {
+    width: 90vw;
+    height: 90vw;
+    padding: 16px 4vw;
+  }
+}
+.fade {
+  opacity: 1;
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+  z-index: 1;
+  pointer-events: auto;
+}
+.fade.hide {
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #fff;
+  border-radius: 0;
+  transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.choices {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+}
+.card {
+  background: #444;
+  border-radius: 12px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  min-width: 140px;
+  min-height: 220px;
+}
+.card:hover {
+  box-shadow: 0 2px 12px #0008;
+}
+.drink-img {
+  width: 90px;
+  height: 120px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.glass {
+  width: 72px;
+  height: 96px;
+  background: #ccc;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  position: relative;
+}
+.coffee, .latte {
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 9px;
+  height: 72px;
+  clip-path: polygon(12% 0, 88% 0, 78% 100%, 22% 100%);
+  border-radius: 0 0 8px 8px;
+}
+.coffee {
+  background: #4b2e2b;
+}
+.latte {
+  background: #bba9a1;
+}
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #ddd;
+}
+.section-title,
+.section-title-full {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #111;
+  background: #eae2cf;
+  padding: 44px 0 44px 0;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  z-index: 2;
+}
+.hot, .ice {
+  margin-bottom: 24px;
+}
+.hot .label, .ice .label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hot .label { color: #ff9966; }
+.ice .label { color: #66aaff; }
+.size-choices {
+  display: flex;
+  gap: 24px;
+}
+.size-card {
+  background: #444;
+  border-radius: 10px;
+  padding: 2px 2px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  min-width: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.size-card:hover {
+  box-shadow: 0 2px 12px #0008;
+}
+.size-title {
+  font-size: 0.55rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+.size-sub {
+  font-size: 0.45rem;
+  color: #ccc;
+}
+.ice-cubes {
+  width: 18px;
+  height: 18px;
+  background: #eaf6ff;
+  border-radius: 4px;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  box-shadow: 18px 0 #eaf6ff;
+}
+.steam {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: -18px;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.steam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5px;
+}
+.steam svg {
+  display: block;
+}
+#screen1 .choices {
+  margin-top: 140px;
+  margin-bottom: 24px;
+  gap: 32px;
+}
+.size-grid {
+  display: grid;
+  grid-template-areas:
+    "lt rt"
+    "lb rb";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 32px 32px;
+  width: 100%;
+  max-width: 100%;
+  height: 320px;
+  margin-top: 92px;
+  align-items: stretch;
+  justify-items: stretch;
+}
+.size-card[style*="grid-area: lt"] { justify-self: start; align-self: start; }
+.size-card[style*="grid-area: rt"] { justify-self: end; align-self: start; }
+.size-card[style*="grid-area: lb"] { justify-self: start; align-self: end; }
+.size-card[style*="grid-area: rb"] { justify-self: end; align-self: end; }
+.card .glass .coffee {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+#screen1 .card .glass {
+  width: 90px;
+  margin: 0 auto;
+}
+#screen1 .card .coffee {
+  left: 10px;
+  right: 10px;
+  height: 72px;
+}
+#screen1 .card .glass .coffee {
+  position: absolute;
+  left: 0px;
+  right: 18px;
+}
+#screen1 .card .glass .latte {
+  left: 0px;
+  right: 0px;
+  width: 100%;
+}
+.size-card[style*="grid-area: lb"],
+.size-card[style*="grid-area: rb"] {
+  margin-top: 50px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] {
+  min-width: unset;
+  width: 100%;
+  min-height: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: 0.55rem;
+}
+#screen2 .size-card[style*="grid-area: lt"],
+#screen2 .size-card[style*="grid-area: rt"] {
+  min-width: 60px;
+  width: 100%;
+  min-height: 2px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: 0.55rem;
+  border-radius: 10px;
+  background: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+#screen2 .size-card[style*="grid-area: lt"] {
+  height: 110px;
+  min-height: 0;
+  max-height: 130px;
+}
+#screen2 .size-card[style*="grid-area: lt"],
+#screen2 .size-card[style*="grid-area: rt"],
+#screen2 .size-card[style*="grid-area: lb"],
+#screen2 .size-card[style*="grid-area: rb"] {
+  height: 110px;
+  min-height: 0;
+  max-height: 130px;
+}
+#screen2 .size-card {
+  max-width: 360px;
+  width: 100%;
+}
+.size-card[style*="grid-area: lb"],
+.size-card[style*="grid-area: rb"] {
+  margin-top: 20px !important;
+}
+#screen2 .size-card[style*="grid-area: lb"],
+#screen2 .size-card[style*="grid-area: rb"] {
+  margin-top: 40px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"],
+#screen2 .size-card[style*="grid-area: lb"] {
+  margin-left: 0px;
+}
+body, .container, .card, .title, .subtitle, .choices, .size-card, .size-title, .size-sub, .section-title, .section-title-full, .drink-img {
+  font-family: 'Noto Sans JP', sans-serif !important;
+}
+#screen2 .size-card .drink-img {
+  margin-left: -60px;
+  width: 64px;
+  height: 86px;
+}
+#screen2 .size-card .glass {
+  width: 52px;
+  height: 70px;
+}
+#screen2 .size-card .coffee,
+#screen2 .size-card .latte {
+  height: 52px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+}
+#screen2 .size-card .ice-cubes {
+  width: 12px;
+  height: 12px;
+  left: 6px;
+  bottom: 6px;
+  box-shadow: 12px 0 #eaf6ff;
+}
+#screen2 .size-card .steam {
+  width: 12px;
+  height: 12px;
+  top: -12px;
+  left: 12px;
+}
+#screen2 .size-card .steam span {
+  width: 4px;
+  height: 7px;
+  margin-left: 4px;
+}
+#screen2 .size-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 16px;
+  min-width: 48px;
+}
+#screen2 .size-title {
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  text-align: left;
+}
+#screen2 .size-sub {
+  font-size: 0.75rem;
+  color: #ccc;
+  text-align: left;
+  font-weight: 600;
+}
+#screen2 .size-card {
+  max-width: 360px !important;
+  width: 100% !important;
+}
+#screen2 .size-grid {
+  column-gap: 40px;
+}
+#screen2 .size-title {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  text-align: left;
+}
+#screen2 .size-sub {
+  font-size: 1rem;
+  color: #ccc;
+  text-align: left;
+  font-weight: 600;
+}
+#screen2 .size-card .drink-img {
+  margin-left: -20px;
+}
+#screen2 .size-texts {
+  margin-left: 0px !important;
+}
+#screen2 .size-card .drink-img {
+  margin-left: -40px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .drink-img,
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-left: 0px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .drink-img,
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  width: 60px !important;
+  height: 60px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .glass,
+#screen2 .size-card[style*="grid-area: rb"] .glass {
+  width: 48px !important;
+  height: 48px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .coffee,
+#screen2 .size-card[style*="grid-area: rb"] .coffee {
+#screen2 .size-card[style*="grid-area: rt"] .glass,
+#screen2 .size-card[style*="grid-area: rb"] .glass {
+  width: 48px !important;
+  height: 48px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .coffee,
+#screen2 .size-card[style*="grid-area: rb"] .coffee {
+  height: 32px !important;
+  left: 4px !important;
+  right: 4px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .steam,
+#screen2 .size-card[style*="grid-area: rb"] .steam {
+  width: 10px !important;
+  height: 10px !important;
+  top: -10px !important;
+  left: 10px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .coffee,
+#screen2 .size-card[style*="grid-area: rb"] .coffee {
+  left: 1px !important;
+  right: 1px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .drink-img,
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-top: 24px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .drink-img,
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-left: -20px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .drink-img,
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  width: 40px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .size-texts,
+#screen2 .size-card[style*="grid-area: rb"] .size-texts {
+  justify-content: center !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100%;
+  width: 100%;
+  text-align: center !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .size-texts,
+#screen2 .size-card[style*="grid-area: rb"] .size-texts {
+  margin-left: 24px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-left: -20px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .size-texts,
+#screen2 .size-card[style*="grid-area: lb"] .size-texts {
+  margin-left: 16px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  height: 36px !important;
+}
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-top: 4px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-top: 12px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-top: 20px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-top: 32px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-top: 48px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  height: 25px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  height: 20px !important;
+}
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-top: 24px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .glass,
+#screen2 .size-card[style*="grid-area: rb"] .glass {
+  position: relative !important;
+  top: 10px !important;
+}
+.drink-img.left-top,
+.drink-img.left-bottom {
+  margin-top: 8px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-top: 8px !important;
+  height: 54px !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .glass,
+#screen2 .size-card[style*="grid-area: lb"] .glass {
+  height: 65px !important;
+}
+#screen2 .size-card[style*="grid-area: rb"] .drink-img {
+  margin-top: 24px !important;
+}
+#screen2 .size-card[style*="grid-area: rt"] .glass,
+#screen2 .size-card[style*="grid-area: rb"] .glass {
+  position: static !important;
+  top: auto !important;
+}
+.drink-img.left-top,
+.drink-img.left-bottom {
+  margin-top: 8px !important;
+}
+.drink-card {
+  position: relative;
+  width: 320px;
+}
+.drink-label-large {
+  position: absolute;
+  right: 24px !important;
+  top: 50%;
+  left: auto !important;
+  transform: translateY(-50%);
+  margin-left: 0 !important;
+}
+#screen2 .size-card[style*="grid-area: lt"] .drink-img,
+#screen2 .size-card[style*="grid-area: lb"] .drink-img {
+  margin-left: 120px !important;
+}
+#screen3 {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: #111;
+  color: #fff;
+}
+#screen4 {
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: #111;
+  color: #fff;
+}
+#screen4 .extract-title {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.35rem;
+  color: #111;
+  z-index: 2;
+  letter-spacing: 0.02em;
+}
+#screen4 .extract-main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 120px;
+  margin-left: 0;
+  z-index: 3;
+  justify-content: flex-end;
+}
+#screen4 .coffee-illustration {
+  position: relative;
+  width: 100px;
+  height: 130px;
+  margin-right: 36px;
+}
+#screen4 .steam {
+  position: absolute;
+  top: 0px;
+  left: 34px;
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  z-index: 2;
+}
+#screen4 .steam span {
+  color: #fff;
+  font-size: 1.7rem;
+  opacity: 0.95;
+  display: inline-block;
+  transform: rotate(90deg);
+  line-height: 1;
+}
+#screen4 .glass {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  width: 90px;
+  height: 120px;
+  margin: 0 auto;
+  background: #ccc;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  z-index: 1;
+}
+#screen4 .coffee-liquid {
+  position: absolute;
+  left: 13px; right: 13px; bottom: 15px;
+  height: 80px;
+  background: #4b2e2b;
+  clip-path: polygon(12% 0, 88% 0, 78% 100%, 22% 100%);
+  border-radius: 0 0 8px 8px;
+  z-index: 2;
+}
+#screen4 .labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 22px;
+  margin-left: 10px;
+}
+#screen4 .hot-coffee-label {
+  font-size: 2.1rem;
+  color: #ffb08a;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+#screen4 .light-label {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1.1;
+}
+#screen4 .progress-percent {
+  font-size: 4.5rem;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 90px;
+  text-align: center;
+  width: 100%;
+  z-index: 4;
+  letter-spacing: 0.01em;
+}
+#screen4 .progress-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  color: #3c2a1e;
+  z-index: 2;
+}
+#screen4 .cream-band {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #111;
+  background: #eae2cf;
+  padding: 44px 0 44px 0;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 0;
+  text-align: center;
+  z-index: 2;
+  display: block;
+  box-sizing: border-box;
+}
+#screen4 .screen4-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 110px;
+}
+#screen4 .progress-percent:after {
+  content: "0%";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  text-align: center;
+  font-size: 2.2rem;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  z-index: 10;
+}
+#screen4 .hot-coffee-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 0;
+  color: #ffb08a;
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}

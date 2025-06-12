@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>コーヒー選択プロトタイプ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 1st Screen -->
+    <div id="screen1" class="screen fade">
+      <div class="section-title section-title-full">どちらかお選びください</div>
+      <div class="choices">
+        <div class="card" id="coffee-btn" style="margin-right: 0; margin-left: 20px; position: relative;">
+          <div style="position:absolute; top:40px; left:0; width:100%; text-align:center; z-index:2; pointer-events:none;">
+            <div class="title">コーヒー</div>
+            <div class="subtitle">-COFFEE-</div>
+          </div>
+          <div class="drink-img" style="margin-top: 80px;">
+            <div class="glass">
+              <div class="coffee"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-left: -16px; margin-right: 16px; position: relative;">
+          <div style="position:absolute; top:40px; left:0; width:100%; text-align:center; z-index:2; pointer-events:none;">
+            <div class="title">カフェラテ</div>
+            <div class="subtitle">-CAFE LATTE-</div>
+          </div>
+          <div class="drink-img" style="margin-top: 80px;">
+            <div class="glass">
+              <div class="latte"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 2nd Screen -->
+    <div id="screen2" class="screen fade" style="opacity:0; pointer-events:none;">
+      <div class="section-title section-title-full">種類をお選びください</div>
+      <div class="size-grid">
+        <!-- ホットラベル追加 -->
+        <div style="grid-column: 1 / span 2; grid-row: 1; justify-self: center; align-self: start; margin-bottom: 0; width: 100%; text-align: center; z-index: 3; pointer-events: none;">
+          <span style="font-size: 1.35rem; font-weight: bold; color: #ff9966; letter-spacing: 0.05em;">ホット <span style="font-size:0.7em;">-HOT-</span></span>
+        </div>
+        <!-- アイスラベルを下段中央に1つだけ配置（上に戻す: top: 12px→top: -12px） -->
+        <div style="grid-column: 1 / span 2; grid-row: 2; justify-self: center; align-self: start; margin-bottom: 0; width: 100%; text-align: center; z-index: 3; pointer-events: none; position: relative; top: -12px;">
+          <span style="font-size: 1.35rem; font-weight: bold; color: #66aaff; letter-spacing: 0.05em;">アイス <span style="font-size:0.7em;">-ICE-</span></span>
+        </div>
+        <div class="size-card" id="lt-btn" style="grid-area: lt; margin-top: 48px; margin-left: 15px; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+          <div class="drink-img" style="margin-top: 8px; position:relative; margin-left: 10px !important;">
+            <!-- 湯気（〜マーク）を削除 -->
+            <div class="glass" style="height:65px !important; width:60px !important;">
+              <div class="coffee" style="height:48px !important; bottom:7px !important; left:4px; right:4px;"></div>
+            </div>
+          </div>
+          <div class="size-texts" style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 30px !important;">
+            <div class="size-title">大きい</div>
+            <div class="size-sub">LARGE</div>
+          </div>
+        </div>
+        <div class="size-card" style="grid-area: rt; margin-top: 48px; margin-right: 15px; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+          <div class="drink-img" style="position:relative; margin-left: 20px !important; margin-top: 24px !important;">
+            <!-- 湯気（〜マーク）を削除 -->
+            <div class="glass" style="width:56px !important; height:56px !important;">
+              <div class="coffee" style="height:29px !important;"></div>
+              <div class="steam" style="display: flex; flex-direction: column; align-items: center; gap: 0.1px; margin-bottom: 0.5px;">
+                <svg width="32" height="32" viewBox="0 0 32 32" style="display: block;">
+                  <path d="M10 26 Q16 10, 22 26" stroke="#bbb" stroke-width="2.5" fill="none"/>
+                  <path d="M16 26 Q20 16, 24 26" stroke="#bbb" stroke-width="2.5" fill="none"/>
+                  <path d="M6 26 Q12 14, 18 26" stroke="#bbb" stroke-width="2.5" fill="none"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="size-texts" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-left: 16px; text-align: center; height: 100%; width: 100%;">
+            <div class="size-title">ふつう</div>
+            <div class="size-sub">REGULAR</div>
+          </div>
+        </div>
+        <div class="size-card" style="grid-area: lb; margin-left: 15px; display: flex; flex-direction: row; align-items: center; justify-content: center; position: relative;">
+          <div class="drink-img" style="margin-top: 8px; position:relative; margin-left: 10px !important;">
+            <div class="glass" style="height:65px !important; width:60px !important;">
+              <div class="coffee" style="height:48px !important;"></div>
+              <div class="ice-cubes" style="position:absolute; left:18px; bottom:10px; width:28px; height:18px; background:none; box-shadow:none;">
+                <div style="position:absolute; width:10px; height:10px; background:rgba(255,255,255,0.6); left:4px; top:8px; transform:rotate(-12deg);"></div>
+                <div style="position:absolute; width:10px; height:10px; background:rgba(255,255,255,0.6); left:13px; top:5px; transform:rotate(10deg);"></div>
+                <div style="position:absolute; width:10px; height:10px; background:rgba(255,255,255,0.6); left:9px; top:-3px; transform:rotate(-8deg);"></div>
+              </div>
+            </div>
+          </div>
+          <div class="size-texts" style="display: flex; flex-direction: column; align-items: flex-start; margin-left: 30px !important;">
+            <div class="size-title">大きい</div>
+            <div class="size-sub">LARGE</div>
+          </div>
+        </div>
+        <div class="size-card" style="grid-area: rb; margin-right: 15px; display: flex; flex-direction: row; align-items: center; justify-content: center; position: relative;">
+          <div class="drink-img" style="position:relative; margin-top: 24px !important; margin-left: 20px !important;">
+            <div class="glass" style="width:56px !important; height:56px !important;">
+              <div class="coffee" style="height:29px !important;"></div>
+              <div class="ice-cubes" style="position:absolute; left:22px; bottom:4px; width:28px; height:18px; background:none; box-shadow:none;">
+                <div style="position:absolute; width:9px; height:9px; background:rgba(255,255,255,0.6); left:0px; top:6px; transform:rotate(-12deg);"></div>
+                <div style="position:absolute; width:9px; height:9px; background:rgba(255,255,255,0.6); left:7px; top:3px; transform:rotate(10deg);"></div>
+                <div style="position:absolute; width:9px; height:9px; background:rgba(255,255,255,0.6); left:2px; top:-2px; transform:rotate(-8deg);"></div>
+              </div>
+            </div>
+          </div>
+          <div class="size-texts" style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-left: 16px; text-align: center; height: 100%; width: 100%;">
+            <div class="size-title">ふつう</div>
+            <div class="size-sub">REGULAR</div>
+          </div>
+        </div>
+        <!-- ...existing code... -->
+      </div>
+    </div>
+    <!-- 3rd Screen (dissolve destination) -->
+    <div id="screen3" class="screen fade" style="opacity:0; pointer-events:none; display:none; z-index:0; background:#111; color:#fff;">
+      <div class="section-title section-title-full">濃さをお選びください</div>
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; z-index:3;">
+        <div style="display:flex; align-items:center; margin-top:-10px; margin-bottom:24px; flex-direction:column;">
+          <!-- ホットコーヒーLの文字を1つだけ残す -->
+          <div style="font-size:1.5rem; color:#ffb08a; font-weight:bold; letter-spacing:0.04em; margin-top:200px; order:1; margin-left:80px; position:absolute; left:0; right:0; text-align:center;">ホットコーヒー L</div>
+          <!-- コーヒーイラストをホットコーヒーLの左横・同じ高さに移動 -->
+          <div style="position:absolute; width:60px; height:65px; left:calc(50% - 140px); top:180px; margin:0; order:2;">
+            <!-- 湯気（〜マーク）を削除 -->
+            <div class="glass" style="height:65px !important; width:60px !important;">
+              <div class="coffee" style="height:48px !important; bottom:7px !important; left:4px; right:4px;"></div>
+            </div>
+          </div>
+        <!-- ボタン群をさらに下に移動 -->
+        <div style="display:flex; gap:16px; margin-top:300px; order:0;">
+          <div id="light-btn" style="background:#444; border-radius:18px; width:140px; height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 2px 12px #0008; cursor:pointer;">
+            <div style="font-size:1.8rem; font-weight:700; color:#fff; margin-bottom:8px;">薄め</div>
+            <div style="font-size:0.95rem; font-weight:700; color:#fff; letter-spacing:0.04em;">LIGHT</div>
+          </div>
+          <div style="background:#444; border-radius:18px; width:140px; height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 2px 12px #0008;">
+            <div style="font-size:1.8rem; font-weight:700; color:#fff; margin-bottom:8px;">ふつう</div>
+            <div style="font-size:0.95rem; font-weight:700; color:#fff; letter-spacing:0.04em;">NORMAL</div>
+          </div>
+          <div style="background:#444; border-radius:18px; width:140px; height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 2px 12px #0008;">
+            <div style="font-size:1.8rem; font-weight:700; color:#fff; margin-bottom:8px;">濃いめ</div>
+            <div style="font-size:0.95rem; font-weight:700; color:#fff; letter-spacing:0.04em;">STRONG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 4th Screen (抽出しています… 進捗画面) -->
+    <div id="screen4" class="screen fade" style="opacity:0; pointer-events:none; display:none; z-index:0; background:#111; color:#fff;">
+      <div class="section-title section-title-full">抽出しています…</div>
+      <div class="screen4-content" style="padding-top:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%;">
+        <!-- コーヒーイラスト（3画面目と同じ構造・サイズ・スタイル）を中央上部に追加 -->
+        <div style="position:absolute; width:60px; height:65px; left:calc(50% - 140px); top:180px; margin:0; order:2;">
+          <!-- 湯気（〜マーク）を削除 -->
+          <div class="glass" style="height:65px !important; width:60px !important;">
+            <div class="coffee" style="height:48px !important; bottom:7px !important; left:4px; right:4px;"></div>
+          </div>
+        </div>
+        <!-- 進捗率 0% を下部に追加 -->
+        <div style="position:absolute; left:0; right:0; bottom:64px; text-align:center; font-size:3.5rem; color:#fff; font-weight:bold; letter-spacing:0.04em; z-index:10;">0%</div>
+      </div>
+      <!-- 4画面目の中央にホットコーヒーLの文字を上に移動して表示 -->
+      <!-- 削除済み：中央の1つだけ残すため -->
+      <!-- 4画面目のホットコーヒーLの文字を画面中央に絶対配置で表示 -->
+      <div style="position: absolute; left: 55px; right: 0; top: 47%; transform: translateY(-50%); text-align: center; width: 100%; pointer-events: none; z-index: 20;">
+        <span style="color: #ffb08a; font-size: 1.5rem; font-weight: bold; letter-spacing: 0.04em;">ホットコーヒー L</span>
+        <div style="margin-top: 12px; text-align: center; width: 100%;">
+          <span style="color: #fff; font-size: 1.5rem; font-weight: bold; letter-spacing: 0.04em;">薄め</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 画面遷移用スクリプト（クロスフェード対応）
+    document.addEventListener('DOMContentLoaded', function() {
+      const screens = [
+        document.getElementById('screen1'),
+        document.getElementById('screen2'),
+        document.getElementById('screen3'),
+        document.getElementById('screen4')
+      ];
+      let current = 0;
+      function showScreen(idx) {
+        if (current === idx) return;
+        const prev = screens[current];
+        const next = screens[idx];
+        // 4画面目は常に表示・不透明・操作可・最前面を維持
+        if (idx === 3) {
+          screens[3].style.display = 'flex';
+          screens[3].style.opacity = 1;
+          screens[3].style.pointerEvents = 'auto';
+          screens[3].style.zIndex = 10;
+          screens[3].classList.remove('hide');
+          screens[3].classList.add('fade');
+          var progress = screens[3].querySelector('div[style*="font-size:3.5rem"]');
+          var title = screens[3].querySelector('.section-title.section-title-full');
+          if (progress) progress.textContent = "0%";
+          if (title) title.textContent = '抽出しています…';
+          let percent = 0;
+          function updateProgress() {
+            percent += 10;
+            if (percent <= 100 && screens[3].style.display === 'flex') {
+              progress.textContent = percent + '%';
+              if (percent < 100) {
+                setTimeout(updateProgress, 2000);
+              } else {
+                if (title) title.textContent = '出来上がりました';
+                // 5秒後に1画面目へ即時遷移（クロスフェードなし）
+                setTimeout(function() {
+                  screens.forEach((sc, i) => {
+                    if (i === 0) {
+                      sc.classList.remove('hide');
+                      sc.style.display = 'flex';
+                      sc.style.opacity = 1;
+                      sc.style.pointerEvents = 'auto';
+                      sc.style.zIndex = 10;
+                    } else {
+                      sc.classList.add('hide');
+                      sc.style.display = 'none';
+                      sc.style.opacity = 0;
+                      sc.style.pointerEvents = 'none';
+                      sc.style.zIndex = 0;
+                    }
+                  });
+                  current = 0;
+                }, 5000);
+              }
+            }
+          }
+          setTimeout(updateProgress, 2000);
+          current = 3;
+          return;
+        }
+        // 4画面目以外の通常遷移
+        prev.classList.add('hide');
+        prev.style.zIndex = 0;
+        next.style.display = 'flex';
+        next.style.zIndex = 10;
+        setTimeout(() => {
+          next.classList.remove('hide');
+          next.style.opacity = 1;
+          next.style.pointerEvents = 'auto';
+        }, 10);
+        setTimeout(() => {
+          prev.style.display = 'none';
+          prev.style.opacity = 0;
+          prev.style.pointerEvents = 'none';
+        }, 600);
+        current = idx;
+      }
+      // 初期化時も4画面目を強制非表示→強制表示
+      screens.forEach((sc, i) => {
+        if (i === 0) {
+          sc.classList.remove('hide');
+          sc.style.display = 'flex';
+          sc.style.opacity = 1;
+          sc.style.pointerEvents = 'auto';
+          sc.style.zIndex = 10;
+        } else if (i === 3) {
+          sc.style.display = 'none';
+          sc.style.opacity = 0;
+          sc.style.pointerEvents = 'none';
+          sc.style.zIndex = 0;
+          sc.classList.remove('hide');
+          sc.classList.add('fade');
+        } else {
+          sc.classList.add('hide');
+          sc.style.display = 'none';
+          sc.style.opacity = 0;
+          sc.style.pointerEvents = 'none';
+          sc.style.zIndex = 0;
+        }
+      });
+      // コーヒーボタン押下で2画面目へ
+      const coffeeBtn = document.getElementById('coffee-btn');
+      if (coffeeBtn) {
+        coffeeBtn.addEventListener('click', function() {
+          showScreen(1);
+        });
+      }
+      // 2画面目のどれかのボタン押下で3画面目へ（例: 左上ボタン）
+      const ltBtn = document.getElementById('lt-btn');
+      if (ltBtn) {
+        ltBtn.addEventListener('click', function() {
+          showScreen(2);
+        });
+      }
+      // 3画面目のどこか（例: 薄めボタン）を押したら4画面目へクロスフェード遷移
+      const lightBtn = document.getElementById('light-btn');
+      if (lightBtn) {
+        lightBtn.addEventListener('click', function() {
+          showScreen(3);
+        });
+      }
+      // 必要に応じて他のボタンの遷移も追加
+    });
+  </script>
+</body>
+</html>
